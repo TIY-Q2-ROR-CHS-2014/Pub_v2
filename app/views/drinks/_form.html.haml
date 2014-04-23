@@ -1,0 +1,24 @@
+= form_for [@pub, @drink] do |f|
+  = render 'layouts/error_messages', object: @drink
+  = f.label :name
+  = f.text_field :name
+  %br
+  = f.label :cost
+  = f.text_field :cost
+  %br
+  = f.label :description
+  = f.text_area :description
+
+  / = f.select :description, options_for_select(Drink::SHIT_BEERS)
+
+  %br
+  - @drink_categories.each do |drink_category|
+    = check_box_tag 'drink[drink_category_ids][]', drink_category.id, @drink.drink_categories.include?(drink_category), {id: "drink_category_id_#{drink_category.id}"}
+    = label_tag "drink_category_id_#{drink_category.id}", drink_category.name
+    %br
+
+
+
+  %br
+  = f.submit
+= link_to "Cancel", pub_path(@pub)

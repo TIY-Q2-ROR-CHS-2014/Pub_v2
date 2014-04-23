@@ -1,0 +1,13 @@
+= @drink.name
+%br
+Pub: #{@pub.name}
+%br
+= @drink.description
+%br
+= @drink.cost
+%br
+%strong Categories:
+%ul
+  - @drink.drink_categories.each do |drink_category|
+    %li= drink_category.name
+= link_to "Pub Page", pub_path(@pub)
